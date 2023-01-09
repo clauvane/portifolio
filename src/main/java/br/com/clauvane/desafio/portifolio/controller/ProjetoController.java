@@ -3,6 +3,7 @@ package br.com.clauvane.desafio.portifolio.controller;
 import br.com.clauvane.desafio.portifolio.model.dto.ProjetoDto;
 import br.com.clauvane.desafio.portifolio.model.entity.Projeto;
 import br.com.clauvane.desafio.portifolio.model.enums.StatusProjeto;
+import br.com.clauvane.desafio.portifolio.service.PessoaService;
 import br.com.clauvane.desafio.portifolio.service.ProjetoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class ProjetoController {
     @Autowired
     private ProjetoService projetoService;
 
+    @Autowired
+    private PessoaService pessoaService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -47,6 +51,7 @@ public class ProjetoController {
     @GetMapping("/salvar")
     public String prepararSalvar(ModelMap model){
       model.addAttribute("projeto", new Projeto());
+      model.addAttribute("pessoas", pessoaService.findAll());
       model.addAttribute(FORM_ACTION, "salvar");
 
       return "projeto/formulario";
@@ -71,6 +76,7 @@ public class ProjetoController {
             throw new IllegalArgumentException(PROJETO_NAO_ENCONTRADO);
         }
         model.addAttribute("projeto", projeto.get());
+        model.addAttribute("pessoas", pessoaService.findAll());
         model.addAttribute(FORM_ACTION, "editar");
 
         return "projeto/formulario";

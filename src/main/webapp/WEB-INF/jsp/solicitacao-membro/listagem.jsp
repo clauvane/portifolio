@@ -36,18 +36,6 @@
            &nbsp;
            <a type="button" class="btn btn-danger" href="/portifolio/solicitacao-membro/reprovar?id=${solicitacaoMembro.id}">Reprovar</a>
        </c:if>
-        <c:if test = "${solicitacaoMembro.status == 'APROVADO'}">
-           <a type="button" class="btn btn-success" href="/portifolio/solicitacao-membro/editar?id=${solicitacaoMembro.id}">Editar</a>
-
-           <button type="button"
-                   class="btn btn-danger"
-                   data-bs-target="#removerModal"
-                   data-bs-toggle="modal"
-                   data-nome="A solicitação de membro da pessoa ${solicitacaoMembro.pessoa.nome} será removida."
-                   data-link="/portifolio/solicitacao-membro/remover?id=${solicitacaoMembro.id}">
-             Remover
-           </button>
-        </c:if>
        </td>
       </tr>
      </c:forEach>

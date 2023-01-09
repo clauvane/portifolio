@@ -1,5 +1,6 @@
 package br.com.clauvane.desafio.portifolio.model.dto;
 
+import br.com.clauvane.desafio.portifolio.model.entity.Pessoa;
 import br.com.clauvane.desafio.portifolio.model.enums.RiscoProjeto;
 import br.com.clauvane.desafio.portifolio.model.enums.StatusProjeto;
 import lombok.Data;
@@ -16,11 +17,11 @@ public class ProjetoDto {
     private UUID id;
 
     @NotBlank(message = "O nome é obrigatório.")
-    @Size(max = 100, message = "O tamanho máximo permitido é de 100 caracteres.")
+    @Size(max = 200, message = "O tamanho máximo permitido é de 200 caracteres.")
     private String nome;
 
-    @NotBlank(message = "O gerente responsável é obrigatório.")
-    private String gerenteResponsavel;
+    @NotNull(message = "O gerente é obrigatório.")
+    private Pessoa gerente;
 
     @NotNull(message = "A data de Início é obrigatória.")
     private Date dataInicio;
@@ -30,8 +31,8 @@ public class ProjetoDto {
 
     private Date dataTerminoReal;
 
-    @NotBlank(message = "O orçamento total é obrigatório.")
-    private String orcamentoTotal;
+    @NotBlank(message = "O orçamento é obrigatório.")
+    private Double orcamento;
 
     @Size(max = 5000, message = "O tamanho máximo permitido é de 5000 caracteres.")
     private String descricao;

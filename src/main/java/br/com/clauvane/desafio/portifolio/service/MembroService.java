@@ -28,7 +28,7 @@ public class MembroService {
     }
 
     public List<Membro> findAll() {
-        return membroRepository.findAll(Sort.by("pessoa.nome"));
+        return membroRepository.findAll();
     }
 
     public Optional<Membro> findById(MembroId id) {

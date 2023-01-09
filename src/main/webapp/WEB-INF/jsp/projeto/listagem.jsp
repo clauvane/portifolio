@@ -18,12 +18,12 @@
     <thead>
      <tr>
       <th width="10%">Nome</th>
-      <th width="10%">Gerente Responsável</th>
+      <th width="10%">Gerente</th>
       <th width="8%">Status</th>
       <th width="8%">Data de Início</th>
       <th width="8%">Previsão de Término</th>
       <th width="8%">Data Término Real</th>
-      <th width="8%">Orçamento Total</th>
+      <th width="8%">Orçamento</th>
       <th width="10%">Descrição</th>
       <th width="10%">Risco</th>
       <th width="20%">Ações</th>
@@ -33,7 +33,7 @@
      <c:forEach items="${projetos}" var="projeto">
       <tr>
        <td>${projeto.nome}</td>
-       <td>${projeto.gerenteResponsavel}</td>
+       <td>${projeto.gerente.nome}</td>
        <td>
             <c:choose>
                  <c:when test = "${projeto.status eq 'EM_ANALISE'}">Em Análise</c:when>
@@ -50,7 +50,7 @@
        <td><fmt:formatDate value="${projeto.dataInicio}" pattern="dd/MM/yyyy" /></td>
        <td><fmt:formatDate value="${projeto.previsaoTermino}" pattern="dd/MM/yyyy" /></td>
        <td><fmt:formatDate value="${projeto.dataTerminoReal}" pattern="dd/MM/yyyy" /></td>
-       <td>${projeto.orcamentoTotal}</td>
+       <td>${projeto.orcamento}</td>
        <td>${projeto.descricao}</td>
        <td>
             <c:choose>

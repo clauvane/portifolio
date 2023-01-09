@@ -1,7 +1,5 @@
 package br.com.clauvane.desafio.portifolio.model.entity;
 
-import br.com.clauvane.desafio.portifolio.model.enums.RiscoProjeto;
-import br.com.clauvane.desafio.portifolio.model.enums.StatusProjeto;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,7 +17,7 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String nome;
 
     @Column(nullable = false)
@@ -34,10 +32,10 @@ public class Pessoa {
     @ManyToMany(mappedBy = "pessoas")
     private Set<Projeto> projetos = new HashSet<>();
 
-    @Column(nullable = false, columnDefinition = "TIMESTAMP")
+    @Column(name = "criado_em", nullable = false, columnDefinition = "TIMESTAMP")
     private Date criadoEm;
 
-    @Column(columnDefinition = "TIMESTAMP")
+    @Column(name = "atualizado_em", columnDefinition = "TIMESTAMP")
     private Date atualizadoEm;
 
 }

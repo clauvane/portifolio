@@ -23,9 +23,14 @@
       </div>
 
       <div class="col-md-6">
-         <form:label path="gerenteResponsavel">Gerente Responsável</form:label>
-         <form:input path="gerenteResponsavel" type="text" class="form-control" required="required" />
-         <form:errors path="gerenteResponsavel" cssClass="text-warning" />
+         <form:label path="gerente">Gerente</form:label>
+         <form:select path="gerente.id" class="form-control" required="required">
+             <form:option value="${null}">Selecione</form:option>
+             <c:forEach items="${pessoas}" var="pessoa">
+                 <form:option value="${pessoa.id}">${pessoa.nome}</form:option>
+             </c:forEach>
+         </form:select>
+         <form:errors path="gerente.id" cssClass="text-warning" />
       </div>
       </div>
 
@@ -55,9 +60,9 @@
 
       <div class="row g-3">
       <div class="col-md-3">
-         <form:label path="orcamentoTotal">Orçamento Total</form:label>
-         <form:input path="orcamentoTotal" type="number" class="form-control" required="required" />
-         <form:errors path="orcamentoTotal" cssClass="text-warning" />
+         <form:label path="orcamento">Orçamento</form:label>
+         <form:input path="orcamento" type="number" class="form-control" required="required" />
+         <form:errors path="orcamento" cssClass="text-warning" />
       </div>
 
       <div class="col-md-3">

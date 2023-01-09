@@ -1,6 +1,5 @@
 package br.com.clauvane.desafio.portifolio.mock;
 
-import br.com.clauvane.desafio.portifolio.model.entity.Pessoa;
 import br.com.clauvane.desafio.portifolio.model.entity.Projeto;
 import br.com.clauvane.desafio.portifolio.model.enums.RiscoProjeto;
 import br.com.clauvane.desafio.portifolio.model.enums.StatusProjeto;
@@ -14,8 +13,8 @@ public class ProjetoMock {
         projeto.setNome("Teste 1");
         projeto.setDataInicio(new Date());
         projeto.setPrevisaoTermino(new Date());
-        projeto.setGerenteResponsavel("Teste Gerente");
-        projeto.setOrcamentoTotal("1");
+        projeto.setGerente(PessoaMock.getPessoa());
+        projeto.setOrcamento(100D);
         projeto.setStatus(StatusProjeto.EM_ANALISE);
         projeto.setRisco(RiscoProjeto.BAIXO);
         projeto.setDescricao("lorem ipsulum");
@@ -29,8 +28,8 @@ public class ProjetoMock {
         projeto.setNome("Teste 2");
         projeto.setDataInicio(new Date());
         projeto.setPrevisaoTermino(new Date());
-        projeto.setGerenteResponsavel("Teste Gerente 2");
-        projeto.setOrcamentoTotal("2");
+        projeto.setGerente(PessoaMock.getPessoa());
+        projeto.setOrcamento(200D);
         projeto.setStatus(StatusProjeto.ANALISE_APROVADA);
         projeto.setRisco(RiscoProjeto.BAIXO);
         projeto.setDescricao("lorem ipsulum");

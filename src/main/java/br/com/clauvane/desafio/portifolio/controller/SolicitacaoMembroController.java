@@ -1,8 +1,11 @@
 package br.com.clauvane.desafio.portifolio.controller;
 
 import br.com.clauvane.desafio.portifolio.model.dto.SolicitacaoMembroDto;
+import br.com.clauvane.desafio.portifolio.model.entity.Membro;
+import br.com.clauvane.desafio.portifolio.model.entity.MembroId;
 import br.com.clauvane.desafio.portifolio.model.entity.SolicitacaoMembro;
 import br.com.clauvane.desafio.portifolio.model.enums.StatusSolicitacaoMembro;
+import br.com.clauvane.desafio.portifolio.service.MembroService;
 import br.com.clauvane.desafio.portifolio.service.SolicitacaoMembroService;
 import br.com.clauvane.desafio.portifolio.service.PessoaService;
 import br.com.clauvane.desafio.portifolio.service.ProjetoService;
@@ -34,6 +37,9 @@ public class SolicitacaoMembroController {
 
     @Autowired
     private SolicitacaoMembroService solicitacaoMembroService;
+
+    @Autowired
+    private MembroService membroService;
 
     @Autowired
     private ProjetoService projetoService;
@@ -125,6 +131,13 @@ public class SolicitacaoMembroController {
         solicitacaoMembro.setAtualizadoEm(new Date());
         solicitacaoMembro.setStatus(StatusSolicitacaoMembro.APROVADO);
         solicitacaoMembroService.saveOrUpdate(solicitacaoMembro);
+
+        Membro membro = new Membro();
+        MembroId membroId = new MembroId();
+        membroId.setPessoa(solicitacaoMembro.getPessoa());
+        membroId.setProjeto(solicitacaoMembro.getProjeto());
+        membro.setMembroId(membroId);
+        membroService.saveOrUpdate(membro);
 
         List<SolicitacaoMembro> solicitacaoMembros = solicitacaoMembroService.findAll();
         model.addAttribute(SOLICITACAO_MEMBROS, solicitacaoMembros);

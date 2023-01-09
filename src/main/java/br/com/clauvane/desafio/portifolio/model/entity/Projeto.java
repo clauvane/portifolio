@@ -19,33 +19,34 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String nome;
 
-    @Column(nullable = false)
-    private String gerenteResponsavel;
+    @ManyToOne
+    @JoinColumn(name = "idgerente", nullable = false)
+    private Pessoa gerente;
 
     @Column(name = "data_inicio", nullable = false, columnDefinition = "DATE")
     private Date dataInicio;
 
-    @Column(name = "data_fim", nullable = false, columnDefinition = "DATE")
+    @Column(name = "data_previsao_fim", nullable = false, columnDefinition = "DATE")
     private Date previsaoTermino;
 
-    @Column(name = "data_fim_real", columnDefinition = "DATE")
+    @Column(name = "data_fim", columnDefinition = "DATE")
     private Date dataTerminoReal;
 
-    @Column(name = "orcamento_total", nullable = false)
-    private String orcamentoTotal;
+    @Column(name = "orcamento", nullable = false)
+    private Double orcamento;
 
-    @Column(name = "descricao", nullable = false)
+    @Column(name = "descricao", nullable = false, length = 5000)
     private String descricao;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "status", nullable = false)
     private StatusProjeto status;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "risco", nullable = false)
     private RiscoProjeto risco;
 
     @ManyToMany
@@ -54,10 +55,10 @@ public class Projeto {
                inverseJoinColumns = @JoinColumn(name = "idpessoa"))
     Set<Pessoa> pessoas = new HashSet<>();
 
-    @Column(nullable = false, columnDefinition = "TIMESTAMP")
+    @Column(name = "criado_em", nullable = false, columnDefinition = "TIMESTAMP")
     private Date criadoEm;
 
-    @Column(columnDefinition = "TIMESTAMP")
+    @Column(name = "atualizado_em", columnDefinition = "TIMESTAMP")
     private Date atualizadoEm;
 
 }
